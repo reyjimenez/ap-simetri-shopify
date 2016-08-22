@@ -1,0 +1,6 @@
+development:
+  password: "4b187954a022dc601f6439c08f6ef310"
+  store: "simetrisucculents-com.myshopify.com"
+  theme_id: "122128323"
+  bucket_size: 40
+  refill_rate: 2
