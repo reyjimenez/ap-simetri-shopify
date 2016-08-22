@@ -2323,7 +2323,11 @@ $socialIconFontStack: 'icons';
 
 }
 
-
+  @include at-query ($max, $medium) {
+     .ap-simetri-spacer {
+    display: none;
+  }
+  }
 
 
 /*================ Templates | Blog and Comments ================*/
