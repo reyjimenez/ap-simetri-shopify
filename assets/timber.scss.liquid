@@ -94,6 +94,8 @@
   }
 }
 
+
+
 /*============================================================================
   Dependency-free breakpoint mixin
     - http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/
@@ -131,6 +133,7 @@ $siteWidth: 1030px;
 $gutter0: 0px;
 $gutter: 30px;
 $gridGutter: 30px;
+$gridGutter0: 0px; 
 $radius: 2px;
 
 $small: 480px;
@@ -586,7 +589,8 @@ $class-type: unquote(".");
   list-style: none;
   margin: 0;
   padding: 0;
-  margin-left: -$gridGutter;
+/*  margin-left: -$gridGutter; */
+  margin-left: $gridGutter0;
 }
 
 #{$class-type}grid__item {
