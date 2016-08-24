@@ -8,15 +8,15 @@
   {% include 'breadcrumb' %}
 </div>
 
-<header class="section-header section-header--large">
-  <h1 class="section-header__title{% if settings.collections_tags_enable or settings.collections_sort_enable %} section-header__title--left{% endif %}">{{ collection.title }}</h1>
-  {% if settings.collections_tags_enable or settings.collections_sort_enable %}
+<!-- <header class="section-header section-header--large">
+  <h1 class="section-header__title{% if settings.collections_tags_enable or settings.collections_sort_enable %} section-header__title--left{% endif %}">{{ collection.title }}</h1> -->
+<!--   {% if settings.collections_tags_enable or settings.collections_sort_enable %}
   <div class="section-header__link--right">
     {% if settings.collections_tags_enable %}
       {% include 'collection-tags' %}
     {% endif %}{% unless grid_item_width %}
   {% assign grid_item_width = 'large--one-third medium-down--one-half' %}
-{% endunless %}
+{% endunless %} -->
 
 {% unless current_collection == blank %}
   {% assign current_collection = collection %}
@@ -34,7 +34,7 @@
   {% assign sold_out = false %}
 {% endif %}
 
-<div class="grid__item {{grid_item_width}}{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}">
+<!-- <div class="grid__item {{grid_item_width}}{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}">
   <a href="{{ product.url | within: collection }}" class="grid-link text-center">
     <span class="grid-link__image grid-link__image--product">
       {% if on_sale and settings.collections_show_sale_circle %}
@@ -63,13 +63,16 @@
       {% if product.price_varies %}{{ 'products.general.from_html' | t: price: price }}{% else %}{{ price }}{% endif %}
     </p>
   </a>
-</div>
+</div> -->
 
-    {% if settings.collections_sort_enable %}
+<!--     {% if settings.collections_sort_enable %}
       {% include 'collection-sorting' %}
     {% endif %}
   </div>
   {% endif %}
+</header> -->
+
+</div>
 </header>
 
 {% if collection.description != blank %}
@@ -77,6 +80,64 @@
     {{ collection.description }}
   </div>
   <hr class="hr--clear hr--small">
+
+<!-- start search product tag -->
+
+<div class="grid__item large--one-half left" style="padding-left:0;">
+  {% include 'search-bar' with 'product' %}
+</div>
+
+<!-- end search product tag -->
+
+<!-- start sort by tag -->
+
+<div class="clearfix filter grid__item large--one-half right" style="padding-left:0;">
+<!--   <p>Browse by tag:</p> -->
+  <select class="coll-filter">
+    <option value="">Browse by tag:</option>
+    <option value="">All</option>
+    {% for tag in collection.all_tags %}
+    {% if current_tags contains tag %}
+    <option value="{{ tag | handle }}" selected>{{ tag }}</option>
+    {% else %}
+    <option value="{{ tag | handle }}">{{ tag }}</option>
+    {% endif %}
+    {% endfor %}
+  </select>
+</div>
+
+<script>
+  /* Product Tag Filters - Good for any number of filters on any type of collection pages */
+  var collFilters = jQuery('.coll-filter');
+  collFilters.change(function() {
+    var newTags = [];
+    collFilters.each(function() {
+      if (jQuery(this).val()) {
+        newTags.push(jQuery(this).val());
+      }
+    });
+    if (newTags.length) {
+      var query = newTags.join('+');
+      window.location.href = jQuery('{{ 'tag' | link_to_tag: 'tag' }}').attr('href').replace('tag', query);
+    }
+    else {
+      {% if collection.handle %}
+      window.location.href = '/collections/{{ collection.handle }}';
+      {% elsif collection.products.first.type == collection.title %}
+      window.location.href = '{{ collection.title | url_for_type }}';
+      {% elsif collection.products.first.vendor == collection.title %}
+      window.location.href = '{{ collection.title | url_for_vendor }}';
+      {% endif %}
+    }
+  });
+</script>
+
+
+
+
+
+<!-- end sort by tag -->
+
 {% endif %}
 
 {% case products_per_row %}
