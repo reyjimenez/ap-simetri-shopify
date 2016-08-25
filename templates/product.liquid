@@ -114,6 +114,10 @@
             {{ product.description }}
           </div>
 
+<!-- Start Product Reviews -->
+<div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+<!-- End Product Reviews -->
+
           {% if settings.social_sharing_products %}
             <hr class="hr--clear hr--small">
             {% include 'social-sharing' %}
