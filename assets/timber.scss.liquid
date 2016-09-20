@@ -2538,7 +2538,7 @@ input.cart__quantity-selector {
 
 .template-product {
 
-    background-image: url("https://cdn.shopify.com/s/files/1/1420/2624/files/img-bg-product.jpg?13790470793484654853"), -webkit-gradient(linear, 0 0, 0 100%, from(#eaecef), to(#eaecef));
+   background-image: url("https://cdn.shopify.com/s/files/1/1420/2624/files/img-bg-product-v5_c069352d-47c0-4596-bc97-5d9c93892a97.jpg?13842194319632336693"), -webkit-gradient(linear, 0 0, 0 100%, from(#eaecef), to(#eaecef));
     background-repeat: no-repeat;
     background-repeat: no-repeat;
     background-position: top center;
@@ -2546,15 +2546,52 @@ input.cart__quantity-selector {
 }
 
 button#AddToCart.btn {
-    
     background-color: $simetriBlue3;
+    border-radius: 20px;
+/*    padding-left: 4px; */
+    font-weight: bold;
+    @include at-query($min, $small) {
+        margin-top: 28px;
+        margin-left: 30px;
+
+    }
+ /*   @include at-query($max, $small) {
+        margin-top: 0px;
+        margin-left: 0px;
+    } */
 }
 
+.product-page-size,
+.product-page-quantity,
+.product-page-add-to-cart,
+div.spr-container {
+    padding-left: 0px;
+    margin-left: 0px;
+}
+
+.product-page-quantity {
+    @include at-query($max, $medium) {
+        margin-left: 30px;
+    }
+    @include at-query($max, $small) {
+        margin-left: 0px;
+    }
+}
+
+
+
+
 .template-product  div.section-header.section-header--medium > h2 {
-    font-size: 1.8em;
+    font-size: 2.2em;
     font-weight: 500;
-    color: #0e5367;
-    border-bottom: dotted; 
+    color: #000;
+    margin-top:100px;
+    margin-bottom: 50px;
+//    border-bottom: dotted; 
+}
+
+.grid-link__container {
+    margin-bottom: 50px !important;
 }
 
 
@@ -2593,6 +2630,44 @@ a.spr-summary-actions-togglereviews, a.spr-summary-actions-newreview {
 
 // START PRODUCT TABS
 
+#tabs > div,
+.custom-desc-tabs > div,
+#tabs-app-accordion > div {
+    background: none !important;
+    border-top: solid 1px #ddd;
+    border-bottom: dotted 1px #ccc;
+    border-left: none !important;
+    border-right: none !important;       
+}
+
+#tabs > ul > li a,
+#tabs-app-accordion > h4 a,
+.custom-desc-tabs > ul > li a {
+    color: #656565 !important;
+}
+
+#tabs-2 > p {
+    font-size: .8em;
+    font-weight: normal;
+}
+
+td.product-information-td-left {
+    width: 40%;
+    background-color: #fff !important;
+    font-weight: 700;
+    font-size: .8em;
+}
+
+td.product-information-td-right {
+   background-color: $simetrigrey;
+    font-weight: 700;
+    font-size: .8em;
+}
+
+
+
+/* OLDER TAB DESIGN 
+
 #tabs > ul > li a {
     font-weight: bold;
     color: #fff !important;
@@ -2618,10 +2693,14 @@ a.spr-summary-actions-togglereviews, a.spr-summary-actions-newreview {
     border: none !important;
 }
 
+#tabs > div {
+  
+      background: rgba(255, 255, 255, .88) !important;
+}
 
 #tabs-2 > p {
     font-size: .8em;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 td.product-information-td-left {
@@ -2635,6 +2714,8 @@ td.product-information-td-right {
     font-weight: 700;
     font-size: .8em;
 }
+
+*/
 
 // END PRODUCT TABS 
 

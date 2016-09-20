@@ -76,6 +76,10 @@
         {% endcomment %}
         <h1 itemprop="name" content="{{ product.title }}{% unless current_variant.title == 'Default Title' %} - {{ current_variant.title }}{% endunless %}">{{ product.title }}</h1>
 
+          <div class="product-description rte" itemprop="description">
+            {{ product.description }}
+          </div>
+
         <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 
           <meta itemprop="priceCurrency" content="{{ shop.currency }}">
@@ -94,28 +98,64 @@
           </div>
 
           <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
-            <select name="id" id="productSelect" class="product-single__variants">
+
+
+      <div class="grid__item product-page-size large--one-quarter medium--one-third" style="padding-left: 0px; margin-left: 0px;">
+        <select name="id" id="productSelect" class="product-single__variants">
               {% for variant in product.variants %}
                 <option {% unless variant.available %} disabled="disabled" {% endunless %} {% if variant == current_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {% if variant.available %}{{ variant.price | money_with_currency }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</option>
               {% endfor %}
             </select>
+      </div>
 
-            <div class="product-single__quantity{% unless settings.product_quantity_enable %} is-hidden{% endunless %}">
+      <div class="grid__item product-page-quantity large--one-quarter medium--one-quarter">
+      <div class="product-single__quantity{% unless settings.product_quantity_enable %} is-hidden{% endunless %}">
               <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
               <input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector">
             </div>
 
+      </div>
+      <div class="grid__item product-page-add-to-cart large--one-quarter medium--one-third">
+  
+            <button type="submit" name="add" id="AddToCart" class="btn">
+            <i class="fa fa-cart-plus" aria-hidden="true"></i>
+              <span style="padding-left:4px;" id="AddToCartText">{{ 'products.product.add_to_cart' | t }} </span>
+            </button>
+
+      </div>
+
+
+<!--         <select name="id" id="productSelect" class="product-single__variants">
+              {% for variant in product.variants %}
+                <option {% unless variant.available %} disabled="disabled" {% endunless %} {% if variant == current_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {% if variant.available %}{{ variant.price | money_with_currency }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</option>
+              {% endfor %}
+            </select> -->
+
+<!--        <div class="product-single__quantity{% unless settings.product_quantity_enable %} is-hidden{% endunless %}">
+              <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
+              <input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector">
+            </div> -->
+<!-- 
             <button type="submit" name="add" id="AddToCart" class="btn">
               <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
-            </button>
+            </button> -->
+
           </form>
 
-          <div class="product-description rte" itemprop="description">
+<!--      <div class="product-description rte" itemprop="description">
             {{ product.description }}
-          </div>
+          </div> -->
+
+
 
 <!-- Start Product Reviews -->
+
+<!--   <div class="grid__item"> -->
 <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+<!--   </div>
+ -->
+
+<!-- <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div> -->
 <!-- End Product Reviews -->
 
           {% if settings.social_sharing_products %}
