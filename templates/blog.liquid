@@ -2,13 +2,14 @@
 
 <div class="grid">
 
-  <div class="grid__item large--four-fifths">
+<!--   <div class="grid__item large--four-fifths"> -->
+<div class="grid__item">
 
     <div class="grid">
       <div class="grid__item large--ten-twelfths">
 
         {% comment %}{% include 'breadcrumb' %}{% endcomment %}
-        <header class="section-header">
+<!--         <header class="section-header">
           <h1 class="section-header__title h3">
             {% if current_tags %}
               {{ blog.title | link_to: blog.url }} &mdash; {{ current_tags.first }}
@@ -16,13 +17,13 @@
               {{ blog.title }}
             {% endif %}
           </h1>
-        </header>
+        </header> -->
 
         {% for article in blog.articles %}
 
           <div class="article">
 
-            <h2><a href="{{ article.url }}">{{ article.title }}</a></h2>
+<!--             <h2><a href="{{ article.url }}">{{ article.title }}</a></h2>
             <p class="blog-date">
               <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: format: 'month_day_year' }}</time>
               {% comment %}
@@ -36,7 +37,7 @@
                 {% endfor %}
               {% endif %}
             </p>
-
+ -->
             {% comment %}
               Add a surrounding div with class 'rte' to anything that will come from the rich text editor.
               Since this is just a listing page, you can either use the excerpt or truncate the full article.
@@ -69,10 +70,10 @@
       </div>
     </div>
   </div>
-
+<!-- 
   <aside class="sidebar grid__item large--one-fifth">
     {% include 'blog-sidebar' %}
-  </aside>
+  </aside> -->
 
 </div>
 
