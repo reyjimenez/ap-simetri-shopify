@@ -16,10 +16,10 @@
         <div class="grid__item large--one-half push--large--one-half">
           <div class="grid--full">
             <div class="grid__item one-third medium-down--one-third">
-              <span class="h4">{{ 'cart.label.price' | t }}</span>
+              <span class="h4"> {{ 'cart.label.price' | t }}</span>
             </div>
             <div class="grid__item one-third medium-down--one-third text-center">
-              <span class="h4">{{ 'cart.label.quantity' | t }}</span>
+              <span class="h4"> {{ 'cart.label.quantity' | t }}</span>
             </div>
             <div class="grid__item one-third medium-down--one-third text-right">
               <span class="h4">{{ 'cart.label.total' | t }}</span>
@@ -165,7 +165,7 @@
           </p>
           <p><em>{{ 'cart.general.shipping_at_checkout' | t }}</em></p>
           <button type="submit" name="update" class="btn--secondary update-cart">{{ 'cart.general.update' | t }}</button>
-          <button type="submit" name="checkout" class="btn checkout">{{ 'cart.general.checkout' | t }}</button>
+          <button type="submit" name="checkout" class="btn checkout">{{ 'cart.general.checkout' | t }} <i class="fa fa-chevron-right" style="padding-left:1px;" aria-hidden="true"></i></button>
 
           {% if additional_checkout_buttons %}
             <div class="cart__additional_checkout">{{ content_for_additional_checkout_buttons }}</div>
