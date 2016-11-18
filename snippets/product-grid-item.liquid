@@ -1,3 +1,8 @@
+
+<!-- insert locksmith code -->
+{% include 'locksmith-variables' %}
+<!-- end locksmith code -->
+
 {% unless grid_item_width %}
   {% assign grid_item_width = 'large--one-third medium-down--one-half' %}
 {% endunless %}
@@ -35,20 +40,41 @@
         <img src="{{ product.featured_image.src | img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}">
       </span>
     </span>
+
+   
     <p class="grid-link__title">{{ product.title }}</p>
+ 
+    
     {% comment %}
       <p class="grid-link__title grid-link__vendor">{{ product.vendor }}</p>
     {% endcomment %}
+
+<!-- start locksmith access code -->
+
+{% if locksmith_access_granted %}    
     <p class="grid-link__meta">
+
+ 
+
       {% capture price %}{{ product.price | money }}{% endcapture %}
+ 
+ 
+
+
       {% if on_sale %}
       <s class="grid-link__sale_price">{{ product.compare_at_price | money }}</s>
       {% endif %}
       {% if product.price_varies %}{{ 'products.general.from_html' | t: price: price }}{% else %}{{ price }}{% endif %}
 
-<!-- start addition of badge -->
+       {% endif %} 
+
+<!-- end locksmith code -->       
+
+
+
       <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
-<!-- end addition of badge -->
+
+
 
     </p>
   </a>
